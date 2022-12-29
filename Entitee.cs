@@ -1,54 +1,46 @@
 ﻿namespace Exercice_3;
 
-internal abstract class Entitee : Actions
+public abstract class Entitee : Actions
 {
     public string Type { get; set; }
-    protected string Name { get; set; }
+    public string Name { get; set; }
     public int Health { get; set; }
-    protected int Damage { get; set; }
-
-    protected Entitee() {}
+    public int Damage { get; set; }
 
     protected Entitee(string name)
     {
         Name = name;
     }
 
-    protected Entitee(string type, string? name, int health, int damage)
-    {
-        Type = type;
-        Name = name;
-        Health = health;
-        Damage = damage;
-    }
-
+    /**
+     * Méthode qui permet de faire attaquer une entitée
+     * @param cible : l'entitée attaquée
+     */
     public void Attaque(Entitee cible)
     {
         cible.Health -= Damage;
 
-        //Dégâts infligés
-        Console.WriteLine("[ATTAQUE] " + Name + " a infligé " + Damage + " points de dégâts à " + cible.Type + " " + cible.Name);
+        // Dégâts infligés
+        Console.WriteLine($"[ATTAQUE] {Type} {Name} a infligé {Damage} points de dégâts à {cible.Type} {cible.Name}");
     }
 
+    /**
+     * Affiche dans la console si l'entité est morte ou non et retourne un booléen en fonction
+     * @return bool : true si l'entité est vivante, false sinon
+     */
     public bool Avenir()
     {
-        //SI HEALTH <= 0 mort sinon survit
-        if (Health <= 0) {
-            Console.WriteLine("[MORT] Le " + Type + " " + Name + " est mort");
-        } else {
-            Console.WriteLine("[SURVIT] Le " + Type + " " + Name + " survit");
-        }
+        // SI HEALTH <= 0 mort sinon survit
+        Console.WriteLine(Health <= 0 ? $"[MORT] Le {Type} {Name} est mort" : $"[SURVIT] Le {Type} {Name} survit");
         return Health > 0;
     }
 
+    /**
+     * Affiche les informations de l'entité
+     * @return string
+     */
     protected void Caracteristiques()
     {
-        Console.WriteLine(
-            "[SPEC] Le "
-            + Type + " "
-            + Name + " a "
-            + Health + " points de vie et "
-            + Damage + " points de dégâts"
-        );
+        Console.WriteLine($"[SPEC] Le {Type} {Name} a {Health} points de vie et {Damage} points de dégâts");
     }
 }

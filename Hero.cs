@@ -2,20 +2,15 @@
 
 internal class Hero : Entitee
 {
-
-    public Hero()
+    public Hero(string name) : base(name)
     {
-        //Création du Héro
+        // Création du Héro
         Type = "Héro";
 
-        //Demander le nom du Héro
-        Console.WriteLine("Quel est le nom de votre Héro ?");
-        Name = Console.ReadLine() ?? string.Empty;
-
-        //Vie du Héro
+        // Vie du Héro
         Health = 200;
 
-        //Dégât
+        // Dégâts
         Random x = new Random();
         Damage = x.Next(15, 42);
 
@@ -23,27 +18,29 @@ internal class Hero : Entitee
         Caracteristiques();
     }
 
+    /**
+     * Lors de la victoire du Héro sur un monstre il gagne un trésor qui soit
+     * lui donne des points de vie ou des points de dégâts
+     */
     public void Tresor()
     {
-        //Trésor
+        // Trésor 50 / 50
         Random x = new Random();
         var destin = x.Next(1, 2);
 
+        // Point de vie à ajouter ou à retirer selon le destin
         Random y = new Random();
         var point = y.Next(1, 75);
 
-        switch (destin)
+        if (destin == 1)
         {
-            case 1:
-                Console.WriteLine("[TRESOR] Le héro " + Name + " a trouvé un trésor de " + point + " points de vie");
-                //Modifier les points de vie
-                Health += point;
-                break;
-            case 2:
-                Console.WriteLine("[PIEGE] Le héro " + Name + " est tombé dans un piège et perd " + point + " points de vie");
-                //Modifier les points de vie
-                Health -= point;
-                break;
+            Console.WriteLine($"[TRESOR] Le héro {Name} a trouvé un trésor de {point} points de vie");
+            Health += point;
+        }
+        else
+        {
+            Console.WriteLine($"[PIEGE] Le héro {Name} est tombé dans un piège et perd {point} points de vie");
+            Health -= point;
         }
     }
 }
