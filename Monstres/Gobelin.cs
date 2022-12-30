@@ -6,11 +6,11 @@ public class Gobelin : Monstre
     {
         // Santé
         Random y = new Random();
-        Health = y.Next(15, 175);
+        Health = y.Next(15, 176);
 
         // Dégâts
         Random x = new Random();
-        Damage = x.Next(20, 45);
+        Damage = x.Next(20, 46);
         
         Caracteristiques();
     }

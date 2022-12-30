@@ -31,7 +31,7 @@ public abstract class Entitee : Actions
     public bool Avenir()
     {
         // SI HEALTH <= 0 mort sinon survit
-        Console.WriteLine(Health <= 0 ? $"[MORT] Le {Type} {Name} est mort" : $"[SURVIT] Le {Type} {Name} survit");
+        Console.WriteLine(Health <= 0 ? $"[MORT] {Type} {Name} est mort" : $"[SURVIT] {Type} {Name} survit");
         return Health > 0;
     }
 

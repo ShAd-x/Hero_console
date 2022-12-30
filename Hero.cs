@@ -1,6 +1,6 @@
 ﻿namespace Exercice_3;
 
-internal class Hero : Entitee
+public class Hero : Entitee
 {
     public Hero(string name) : base(name)
     {
@@ -8,13 +8,13 @@ internal class Hero : Entitee
         Type = "Héro";
 
         // Vie du Héro
-        Health = 200;
+        Health = 500;
 
         // Dégâts
         Random x = new Random();
-        Damage = x.Next(15, 42);
+        Damage = x.Next(20, 45);
 
-        Console.WriteLine("[APPARITION] Un héro rentre en jeu !");
+        Console.WriteLine("[APPARITION] Un héro entre en jeu !");
         Caracteristiques();
     }
 
@@ -26,20 +26,20 @@ internal class Hero : Entitee
     {
         // Trésor 50 / 50
         Random x = new Random();
-        var destin = x.Next(1, 2);
+        var destin = x.Next(1, 3);
 
         // Point de vie à ajouter ou à retirer selon le destin
         Random y = new Random();
-        var point = y.Next(1, 75);
+        var point = y.Next(1, 76);
 
         if (destin == 1)
         {
-            Console.WriteLine($"[TRESOR] Le héro {Name} a trouvé un trésor de {point} points de vie");
+            Console.WriteLine($"[TRESOR] {Type} {Name} a trouvé un trésor de {point} points de vie");
             Health += point;
         }
         else
         {
-            Console.WriteLine($"[PIEGE] Le héro {Name} est tombé dans un piège et perd {point} points de vie");
+            Console.WriteLine($"[PIEGE] {Type} {Name} est tombé dans un piège et perd {point} points de vie");
             Health -= point;
         }
     }

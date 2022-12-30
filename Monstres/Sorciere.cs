@@ -6,11 +6,11 @@ public class Sorciere : Monstre
     {
         // Santé
         Random y = new Random();
-        Health = y.Next(20, 125);
+        Health = y.Next(25, 126);
 
         // Dégâts
         Random x = new Random();
-        Damage = x.Next(55, 75);
+        Damage = x.Next(50, 71);
         
         Caracteristiques();
     }

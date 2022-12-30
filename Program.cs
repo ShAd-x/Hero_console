@@ -10,17 +10,19 @@ class Program {
         
         // Création du Héro
         Hero hero = new Hero(name);
+        int startHealth = hero.Health;
 
         // Variables de combat
         bool continuer = true;
-        int round = 0, nbMonstre = 1;
+        int round = 0;
 
         // Création du Monstre
-        Gobelin monstre = new Gobelin(Convert.ToString(nbMonstre));
+        Monstre monstre = GestionnaireDePartie.SpawnMonstre();
 
         // Boucle de combat
         while (continuer) {
             Console.WriteLine($"\n========== DEBUT Round {round} ==========");
+            // Log pour le récapitulatif du tour
             var heroVieDamageLog = hero.Health;
             var monstreVieDamageLog = monstre.Health;
             
@@ -29,26 +31,37 @@ class Program {
 
             // Si le monstre meurt
             if (!monstre.Avenir()) {
+                // Le héro vient de gagner le 5ème combat donc il se spécialise
+                if (GestionnaireDePartie.NbMonstres == 6)
+                {
+                    GestionnaireDePartie.Specialisation(hero, startHealth);
+                }
+                // Le héro trouve un trésor
                 hero.Tresor();
                 
-                nbMonstre++;
-                monstre = new Gobelin(Convert.ToString(nbMonstre));
+                // On fait réapparaître un nouveau monstre
+                monstre = GestionnaireDePartie.SpawnMonstre();
+                
+                // Log pour le récapitulatif du tour
                 monstreVieDamageLog = monstre.Health;
             } else {
                 monstre.Attaque(hero);
             }
-
+            
+            // Si le héro meurt (passe à false)
             continuer = hero.Avenir();
             
-            Console.WriteLine($"[Récapitulatif] Héro : {heroVieDamageLog} -> {hero.Health} = ({hero.Health - heroVieDamageLog})");
-            Console.WriteLine($"[Récapitulatif] Monstre : {monstreVieDamageLog} -> {monstre.Health} = ({monstre.Health - monstreVieDamageLog})");
+            Console.WriteLine($"[Récapitulatif] {hero.Type} : {heroVieDamageLog} -> {hero.Health} = ({hero.Health - heroVieDamageLog})");
+            Console.WriteLine($"[Récapitulatif] {monstre.Type} : {monstreVieDamageLog} -> {monstre.Health} = ({monstre.Health - monstreVieDamageLog})");
             Console.WriteLine($"========== FIN Round {round} ==========");
+            
+            // Si le héro n'est pas mort, on incrémente le round sinon on donne le récapitulatif
             if (continuer) {
                 round++;
             } else {
-                Recapitulatif(round, hero, nbMonstre);
+                Recapitulatif(round, hero, GestionnaireDePartie.NbMonstres - 1, monstre);
             }
-            Wait();
+            // Wait();
         }
     }
     
@@ -57,8 +70,8 @@ class Program {
         Thread.Sleep(2000);
     }
 
-    private static void Recapitulatif(int round, Hero hero, int nbMonstre)
+    private static void Recapitulatif(int round, Hero hero, int nbMonstre, Monstre monstre)
     {
-        Console.WriteLine($"{hero.Type} {hero.Name} est mort au round {round}, et c'est le monstre n°{nbMonstre} qui l'a tué.");
+        Console.WriteLine($"{hero.Type} {hero.Name} est mort au round {round}, et c'est le {monstre.Type} n°{nbMonstre} qui l'a tué.");
     }
 }

@@ -6,11 +6,11 @@ public class Squelette : Monstre
     {
         // Santé
         Random y = new Random();
-        Health = y.Next(65, 325);
+        Health = y.Next(60, 311);
 
         // Dégâts
         Random x = new Random();
-        Damage = x.Next(10, 15);
+        Damage = x.Next(10, 16);
         
         Caracteristiques();
     }
