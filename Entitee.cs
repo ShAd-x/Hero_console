@@ -41,6 +41,6 @@ public abstract class Entitee : Actions
      */
     protected void Caracteristiques()
     {
-        Console.WriteLine($"[SPEC] Le {Type} {Name} a {Health} points de vie et {Damage} points de dégâts");
+        Console.WriteLine($"[SPEC] {Type} {Name} a {Health} points de vie et {Damage} points de dégâts");
     }
 }

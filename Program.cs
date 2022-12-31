@@ -61,15 +61,26 @@ class Program {
             } else {
                 Recapitulatif(round, hero, GestionnaireDePartie.NbMonstres - 1, monstre);
             }
-            // Wait();
+            Wait();
         }
     }
     
+    /**
+     * Met en pause le programme
+     */
     private static void Wait()
     {
         Thread.Sleep(2000);
     }
 
+    /**
+     * Affiche le récapitulatif de la partie
+     * 
+     * @param round Le nombre de round final
+     * @param hero Le héro
+     * @param nbMonstres Le nombre de monstres tués
+     * @param monstre Le dernier monstre en vie
+     */
     private static void Recapitulatif(int round, Hero hero, int nbMonstre, Monstre monstre)
     {
         Console.WriteLine($"{hero.Type} {hero.Name} est mort au round {round}, et c'est le {monstre.Type} n°{nbMonstre} qui l'a tué.");

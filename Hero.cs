@@ -8,7 +8,7 @@ public class Hero : Entitee
         Type = "Héro";
 
         // Vie du Héro
-        Health = 500;
+        Health = 300;
 
         // Dégâts
         Random x = new Random();
@@ -42,5 +42,19 @@ public class Hero : Entitee
             Console.WriteLine($"[PIEGE] {Type} {Name} est tombé dans un piège et perd {point} points de vie");
             Health -= point;
         }
+    }
+
+    /**
+     * Change le type et les caractéristiques du Héro
+     * 
+     * @param string type
+     * @param double health
+     * @param double damage
+     */
+    public void ChangeSpecialisation(string type, double health, double damage)
+    {
+        Type = type;
+        Health += (int)health;
+        Damage += (int)damage;
     }
 }
