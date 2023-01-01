@@ -4,7 +4,7 @@ namespace Exercice_3;
 
 public class GestionnaireDePartie
 {
-    // Nb de monstres créés et est aussi le nom du monstre
+    // Nombre de monstres créés et est aussi le nom du monstre
     public static int NbMonstres = 1;
 
     /**

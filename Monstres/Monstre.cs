@@ -7,6 +7,6 @@ public abstract class Monstre : Entitee
         // Type de monstre
         Type = type;
         
-        Console.WriteLine($"[APPARITION] Un {type} entre en jeu !");
+        Console.WriteLine($"[APPARITION] {type} entre en jeu !");
     }
 }

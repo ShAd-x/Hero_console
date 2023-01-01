@@ -1,6 +1,6 @@
 ﻿namespace Exercice_3;
 
-public abstract class Entitee : Actions
+public abstract class Entitee
 {
     public string Type { get; set; }
     public string Name { get; set; }
